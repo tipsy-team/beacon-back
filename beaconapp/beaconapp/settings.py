@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,15 +46,27 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = { 
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
         'oauth2_provider.ext.rest_framework.OAuth2Authentication', 
     ), 
 } 
+LOGIN_URL = 'rest_framework:login'
+LOGOUT_URL = 'rest_framework:logout'
+
+    # SWAGGER_SETTINGS = {
+
+    # #     'LOGIN_URL': 'oauth2_provider:token',
+    # #     'LOGOUT_URL': 'oauth2_provider:token',
+    # #     'USE_SESSION_AUTH': False,
+    # #     'DOC_EXPANSION': 'list',
+    # #     'APIS_SORTER': 'alpha'
+    # }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -137,3 +150,7 @@ STATIC_ROOT = '/var/www/beaconapp'
 
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+OAUTH2_PROVIDER = {
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 525600
+}

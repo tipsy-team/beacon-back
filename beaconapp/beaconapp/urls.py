@@ -2,11 +2,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
-from api import views
 from rest_framework_swagger.views import get_swagger_view
 
 
-schema_view = get_swagger_view(title='findMyPet API')
+schema_view = get_swagger_view(title='api')
 
 # OAuth2 provider endpoints
 oauth2_endpoint_views = [
@@ -35,9 +34,9 @@ if settings.DEBUG:
 urlpatterns = [
     # OAuth 2 endpoints:
     url(r'^$', schema_view),
-    url(r'^sign_up/$', views.SignUp.as_view(), name="sign_up"),
     url(r'^o/', include(oauth2_endpoint_views, namespace="oauth2_provider")),
-
+    url(r'^api/', include('api.urls'), name='api'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/hello', views.ApiEndpoint.as_view()),  # an example resource endpoint
+     url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework')),
 ]
