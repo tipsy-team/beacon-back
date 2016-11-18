@@ -14,6 +14,8 @@ class Beacon(models.Model):
 	user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='beacons')
 	description = models.TextField(null=True)
 
+	def __str__(self):
+		return self.unique_id
 
 class LostBeacon(models.Model):
 	beacon = models.ForeignKey(Beacon)
