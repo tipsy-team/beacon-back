@@ -90,3 +90,6 @@ ENV/
 
 
 db.sqlite3
+
+# Local Virtualenv
+beacon-back/
