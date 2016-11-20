@@ -19,7 +19,7 @@ class SignUpSerializer(serializers.ModelSerializer):
 		write_only_fields = ('password',)
 
 	def create(self, validated_data):
-		# user = 
+		# user 
 		userprofile_data =  validated_data.pop('userprofile')
 		user = User()
 		user.username = validated_data.get('username')
@@ -66,21 +66,21 @@ class LostBeaconSerializer(serializers.ModelSerializer):
 	beacon = BeaconSerializer()
 	class Meta:
 		model = LostBeacon
-		fields = ('beacon', 'description', 'date', 'lat', 'long')
+		fields = ('beacon', 'description', 'date', 'lat', 'long', 'reward')
 
 
 class CreateLostBeaconSerializer(serializers.ModelSerializer):
 	beacon = serializers.SlugRelatedField(queryset=Beacon.objects.all(), allow_null=True, slug_field='unique_id')
 	class Meta:
 		model = LostBeacon
-		fields = ('beacon', 'description', 'date', 'lat', 'long')
+		fields = ('beacon', 'description', 'date', 'lat', 'long', 'reward')
 
 
 class CreateFoundBeaconSerializer(serializers.ModelSerializer):
 	beacon = serializers.SlugRelatedField(queryset=Beacon.objects.all(), allow_null=True, slug_field='unique_id')
 	class Meta:
 		model = LostBeacon
-		fields = ('beacon', 'description', 'date', 'lat', 'long')
+		fields = ('beacon', 'description', 'date', 'lat', 'long', 'reward')
 
 	def create(self, validated_data):
 		found_beacon = FoundBeacon()
@@ -99,4 +99,4 @@ class BeaconLocationsSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = FoundBeacon
-		fields = ('beacon', 'description', 'date', 'lat', 'long', 'user', 'distance')
+		fields = ('beacon', 'description', 'date', 'lat', 'long', 'user', 'distance', 'reward')

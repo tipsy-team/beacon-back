@@ -24,6 +24,7 @@ class LostBeacon(models.Model):
 	lat = models.CharField(max_length=30, null=True, blank=True)
 	long = models.CharField(max_length=30, null=True, blank=True)
 	description = models.TextField(null=True)
+	reward = models.IntegerField(null=True)
 
 
 class FoundBeacon(models.Model):
@@ -34,3 +35,4 @@ class FoundBeacon(models.Model):
 	description = models.TextField(null=True)
 	user = models.ForeignKey(User, null=True)
 	distance = models.FloatField(null=True)
+	reward = models.IntegerField(null=True)

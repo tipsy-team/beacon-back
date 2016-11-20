@@ -15,5 +15,5 @@ urlpatterns = [
     url(r'^found_beacon$', views.CreateFoundBeacon.as_view(), name="found_beacon"),
     url(r'^beacon_locations/$', views.BeaconLocations.as_view(), name="beacons_locations"),
     url(r'^beacon_locations/(?P<beacon>.+)?$', views.BeaconLocations.as_view(), name="beacon_locations"),
-
+    
 ]
